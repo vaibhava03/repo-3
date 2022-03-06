@@ -1,0 +1,76 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast Message</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="style.js" defer></script>
+</head>
+<body>
+    <div id="container"></div>
+    <button id="btn">Click Me</button>
+   
+</body>
+</html>
+
+
+
+const btn=document.getElementById('btn');
+const container=document.getElementById('container');
+
+btn.addEventListener("click", () =>
+{
+    createNotification();
+});
+
+function createNotification() {
+
+const notif=document.createElement('div');
+notif.classList.add('toast');
+notif.innerText='this is a toast message';
+
+container.appendChild(notif);
+setTimeout(() =>
+{
+    notif.remove();
+}, 3000);
+}
+
+
+
+
+*{
+    box-sizing: border-box;
+}
+ body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    margin:0;
+    min-height: 100vh;
+}
+button{
+    background-color: rebeccapurple;
+    color:white;
+    position:fixed;
+    align-self: center;
+}
+#container{
+    
+    position:fixed;
+   bottom:10px;
+    right:10px;
+    
+}
+.toast{
+background-color: rebeccapurple;
+border-radius: 5px;
+color:azure;
+padding:2rem;
+margin:1rem;
+}
