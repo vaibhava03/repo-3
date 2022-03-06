@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto text write</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="style.js" defer></script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+<!---Style.js--->
+const text="This is the text using Auto write..";
+let index=0;
+function writeText() {
+document.body.innerText=text.slice(0, index);
+index++;
+if(index>text.length-1)
+{
+    index=0;
+}
+}
+setInterval(writeText, 100);
+
+
+
+<!---Style.css--->
+
+
+body{
+    background-color: blueviolet;
+    color:white;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    margin:0;
+    min-height: 100vh;
+}
+
+
