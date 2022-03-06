@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Example</title>
+    <link rel="stylesheet" href="darkmode.css">
+    <script src="darkmode.js" defer></script>
+</head>
+<body>
+    <div class="toggle-container">
+<input type="checkbox" id="toggle" name="toggle" >
+<label for="toggle"></label>
+    </div>
+    <h1>Frontend</h1>
+    <p>The frontend is the part of the website users can see and interact with such as the graphical user interface (GUI) and 
+        the command line including the design, navigating menus, texts, images, videos, etc. Backend, on the contrary, is the part 
+        of the website users cannot see and interact with.</p>
+</body>
+</html>
+
+
+
+
+
+<!--darkmode.js-->
+const toggle=document.getElementById('toggle');
+toggle.addEventListener('change', (e)=>
+{
+document.body.classList.toggle('dark', 
+e.target.checked);
+});
+
+
+
+
+<!--darkmode.css-->
+
+*{
+    box-sizing: border-box;
+}
+ body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    flex-direction: column;
+    margin:0;
+    min-height: 100vh;
+    text-align: center;
+    padding: 5rem;
+    transition: background 0.3s linear, color 0.3s linear;
+ }
+
+body.dark{
+    background-color: black;
+    color: white;
+    transition: background 0.3s linear;
+} 
+
+.toggle-container{
+    position: fixed;
+    top: 10px;
+    right:10px;
+}
+
+
+label{
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    width: 50px;
+    height:50px;
+    cursor:pointer;
+    user-select:none;
+}
+
+body.dark label{
+    background-color: white;
+}
+input{
+    visibility: hidden;
+
+} 
+
