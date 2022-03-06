@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <link rel="stylesheet" href="Carousel.css">
+    <script src="Carousel.js" defer></script>
+</head>
+<body>
+    <div class="Carausel">
+        <div class="image-container" id="imgs">
+            <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREW6-hL6wtTDBwRJPRwIBIKHcJsaM97c6xOw&usqp=CAU" alt=""> 
+            <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmXv4hPtQkbDhS329D_g51FCQJgyReaRG03Q&usqp=CAU" alt="">  
+            <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8v1gAI27cpkgWHpcTN2q3LHndnCRqQlvew&usqp=CAU" alt="">  
+            <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd_XRpQfrEzAw8sEwrGPZf5TEI4Nmoo-lPzA&usqp=CAU" alt="">        
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<!--JS FILE-->
+
+
+const imgs=document.getElementById('imgs');
+const img=document.querySelectorAll('#imgs img');
+var index=0;
+function run()
+    {
+        index++;
+        if(index > img.length-1){
+        index=0;
+        }
+        imgs.style.transform=`translateX(${-index*500}px)`;
+
+    }
+
+    setInterval(run, 2000);
+
+
+
+<!--CSS FILE-->
+
+
+*{
+    box-sizing: border-box;
+}
+ body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    margin:0;
+    min-height: 100vh;
+ }
+ 
+.Carausel{
+    box-shadow:2px 2px 5px rgba(0,0,0,0.3);
+    overflow: hidden;
+    height:500px;
+    width:500px;
+}
+
+.image-container{
+    display: flex;
+    transition: transform 0.3s linear;
+    transform: translateX(0);
+}
+
+img {
+    object-fit: cover;
+    height:500px;
+    width:500px;
+} 
+
