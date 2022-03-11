@@ -1,0 +1,187 @@
+//cart.ejs
+   <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/cart.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if (products.length > 0) { %>
+                <ul class="cart__item-list">
+                    <% products.forEach(p => { %>
+                        <li class="cart__item">
+                            <h1><%= p.title %></h1>
+                            <h2>Quantity: <%= p.cartItem.quantity %></h2>
+                            <form action="/cart-delete-item/<%= p.id %>" method="POST">
+                                <input type="hidden" value="<%= p.id %>" name="productId">
+                                <button class="btn danger" type="submit">Delete</button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+                <section class="pagination">
+                    <%if(currentPage!==1&&previousPage!==1){%>
+                    <a href="/cart/?page=1">1</a>
+                    <%}%>
+                    <% if(hasPreviousPage) {%>
+                       <a href="/cart/?page=<%=previousPage%>" ><%=previousPage%></a>
+                       <%}%>
+                    <a href="/cart/?page=<%=currentPage%>" class="active"><%=currentPage%></a>
+                    <% if(hasNextPage) {%>
+                    <a href="/cart/?page=<%=nextPage%>" ><%=nextPage%></a>
+                    <%}%>
+                    <% if(lastPage!==currentPage&&nextPage!==lastPage) {%>
+                    <a href="/cart/?page=<%= lastPage%>"><%=lastPage%></a>
+                    <%}%>
+                </section>
+            <% } else { %>
+                <h1>No Products in Cart!</h1>
+            <% } %>
+        </main>
+    </body>
+
+    </html>
+    
+    
+    //index.ejs
+    
+    <%- include('../includes/head.ejs') %>
+    
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+         <% if (prods.length > 0) { %>
+            <div class="grid">
+                <% for (let product of prods) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= product.title %></h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="<%= product.imageUrl %>"
+                                alt="<%= product.title %>">
+                        </div>
+                        <div class="card__content">
+                            <h2 class="product__price">$<%= product.price %></h2>
+                            <p class="product__description"><%= product.description %></p>
+                        </div>
+                        <div class="card__actions">     
+                            <a href="/products/<%= product.id%>" class="btn">Details</a>
+                           
+                            <form action="/cart" method="POST">
+                                <button class="btn" type="submit">
+                                <input type="hidden" name="productId" value="<%=product.id%>"> Add to Cart </button>
+                            </form>
+                            
+                        </div>
+                    </article>
+                   <% } %> 
+             </div> 
+             <section class="pagination">
+                 <%if(currentPage!==1&&previousPage!==1){%>
+                 <a href="/?page=1">1</a>
+                 <%}%>
+                 <% if(hasPreviousPage) {%>
+                    <a href="/?page=<%=previousPage%>" ><%=previousPage%></a>
+                    <%}%>
+                 <a href="/?page=<%=currentPage%>" class="active"><%=currentPage%></a>
+                 <% if(hasNextPage) {%>
+                 <a href="/?page=<%=nextPage%>" ><%=nextPage%></a>
+                 <%}%>
+                 <% if(lastPage!==currentPage&&nextPage!==lastPage) {%>
+                 <a href="/?page=<%= lastPage%>"><%=lastPage%></a>
+                 <%}%>
+             </section>
+             <% } else { %>
+                <h1>No Products Found!</h1>
+            <% } %> 
+
+    </main>
+<%- include('../includes/end.ejs') %>
+
+
+//product-detail.ejs
+<%-include('../includes/head.ejs') %>
+
+</head>
+<body>
+    <%-include('../includes/navigation.ejs') %>
+
+    <main class="centered">
+        <h1><%= product.title%></h1>
+        <div>
+        <img src="<%= product.imageUrl%>" alt="<%= product.title%>">
+    </div>
+    <h2>$<%= product.price %></h2>
+        <p><%= product.description%></p>
+        <form action="/cart" method="POST">
+            <button class="btn" type="submit">
+            <input type="hidden" name="productId" value="<%=product.id%>""> Add to Cart </button>
+        </form>
+        
+    </main>
+
+    <%- include('../includes/end.ejs') %>
+
+
+
+//product-list
+<%- include('../includes/head.ejs') %>
+    
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+         <% if (prods.length > 0) { %>
+            <div class="grid">
+                <% for (let product of prods) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= product.title %></h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="<%= product.imageUrl %>"
+                                alt="<%= product.title %>">
+                        </div>
+                        <div class="card__content">
+                            <h2 class="product__price">$<%= product.price %></h2>
+                            <p class="product__description"><%= product.description %></p>
+                        </div>
+                        <div class="card__actions">     
+                            <a href="/products/<%= product.id%>" class="btn">Details</a>
+                           
+                            <form action="/cart" method="POST">
+                                <button class="btn" type="submit">
+                                <input type="hidden" name="productId" value="<%=product.id%>"> Add to Cart </button>
+                            </form>
+                            
+                        </div>
+                    </article>
+                   <% } %> 
+             </div> 
+             <section class="pagination">
+                 <%if(currentPage!==1&&previousPage!==1){%>
+                 <a href="/?page=1">1</a>
+                 <%}%>
+                 <% if(hasPreviousPage) {%>
+                    <a href="/?page=<%=previousPage%>" ><%=previousPage%></a>
+                    <%}%>
+                 <a href="/?page=<%=currentPage%>" class="active"><%=currentPage%></a>
+                 <% if(hasNextPage) {%>
+                 <a href="/?page=<%=nextPage%>" ><%=nextPage%></a>
+                 <%}%>
+                 <% if(lastPage!==currentPage&&nextPage!==lastPage) {%>
+                 <a href="/?page=<%= lastPage%>"><%=lastPage%></a>
+                 <%}%>
+             </section>
+             <% } else { %>
+                <h1>No Products Found!</h1>
+            <% } %> 
+
+    </main>
+<%- include('../includes/end.ejs') %>
